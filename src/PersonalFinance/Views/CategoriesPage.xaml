@@ -1,0 +1,39 @@
+<UserControl x:Class="PersonalFinance.Views.CategoriesPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <DockPanel>
+        <TextBlock DockPanel.Dock="Top" Text="Категории" Style="{StaticResource PageTitle}" />
+
+        <Border DockPanel.Dock="Right" Style="{StaticResource FormPanel}">
+            <StackPanel>
+                <TextBlock x:Name="FormTitle" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,10" />
+                <TextBlock Text="Название" />
+                <TextBox x:Name="NameBox" MaxLength="100" />
+                <TextBlock Text="Тип" />
+                <ComboBox x:Name="TypeBox" />
+                <TextBlock Text="Значок (символ или эмодзи)" />
+                <TextBox x:Name="IconBox" MaxLength="10" />
+                <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                    <Button Content="Сохранить" Style="{StaticResource PrimaryButton}" Click="Save_Click" />
+                    <Button Content="Отмена" Margin="0" Click="Reset_Click" />
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,10">
+            <ComboBox x:Name="TypeFilter" Width="120" Margin="0,0,12,0" SelectionChanged="Filter_Changed" />
+            <TextBlock Text="Поиск:" VerticalAlignment="Center" Margin="0,0,6,0" />
+            <TextBox x:Name="SearchBox" Width="200" Margin="0,0,12,0" TextChanged="Filter_Changed" />
+            <Button Content="Добавить" Click="Reset_Click" />
+            <Button Content="Удалить" Click="Delete_Click" />
+        </StackPanel>
+
+        <DataGrid x:Name="Grid" SelectionChanged="Grid_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Значок" Binding="{Binding Icon}" Width="70" />
+                <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="*" />
+                <DataGridTextColumn Header="Тип" Binding="{Binding Type}" Width="120" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</UserControl>

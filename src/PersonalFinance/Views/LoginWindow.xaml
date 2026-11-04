@@ -1,0 +1,21 @@
+<Window x:Class="PersonalFinance.Views.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Личный бюджет — вход" Width="380" SizeToContent="Height"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        FontSize="14" Background="{StaticResource BackBrush}">
+    <StackPanel Margin="30,24">
+        <TextBlock Text="Личный бюджет" FontSize="24" FontWeight="SemiBold"
+                   Foreground="{StaticResource NavBrush}" HorizontalAlignment="Center" />
+        <TextBlock Text="Вход в систему" Foreground="Gray" HorizontalAlignment="Center" Margin="0,0,0,18" />
+
+        <TextBlock Text="Email" />
+        <TextBox x:Name="EmailBox" />
+        <TextBlock Text="Пароль" />
+        <PasswordBox x:Name="PasswordBox" />
+
+        <Button Content="Войти" Style="{StaticResource PrimaryButton}" IsDefault="True"
+                Margin="0,8,0,8" Click="Login_Click" />
+        <Button Content="Регистрация" Margin="0" Click="Register_Click" />
+    </StackPanel>
+</Window>

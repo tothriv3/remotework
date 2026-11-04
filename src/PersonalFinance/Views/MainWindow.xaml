@@ -1,0 +1,56 @@
+<Window x:Class="PersonalFinance.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Личный бюджет" Width="1180" Height="700" MinWidth="980" MinHeight="560"
+        WindowStartupLocation="CenterScreen" FontSize="14" Background="{StaticResource BackBrush}">
+    <DockPanel>
+        <!-- Боковое меню -->
+        <DockPanel DockPanel.Dock="Left" Width="210" Background="{StaticResource NavBrush}">
+            <StackPanel DockPanel.Dock="Top" Margin="16,18,16,14">
+                <TextBlock Text="Личный бюджет" Foreground="White" FontSize="19" FontWeight="SemiBold" />
+                <TextBlock x:Name="UserText" Foreground="#C7D5E8" TextWrapping="Wrap" Margin="0,8,0,0" />
+                <TextBlock x:Name="RoleText" Foreground="#8FA9C9" FontSize="12" />
+            </StackPanel>
+            <Button DockPanel.Dock="Bottom" Content="Выйти" Margin="16" Click="Logout_Click" />
+            <ListBox x:Name="Menu" Background="Transparent" BorderThickness="0" Foreground="White"
+                     SelectionChanged="Menu_SelectionChanged">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Padding" Value="16,9" />
+                        <Setter Property="Cursor" Value="Hand" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListBoxItem">
+                                    <Border x:Name="Bd" Background="Transparent" Padding="{TemplateBinding Padding}">
+                                        <ContentPresenter />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="Bd" Property="Background" Value="#2B4C74" />
+                                        </Trigger>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter TargetName="Bd" Property="Background" Value="#2563EB" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+                <ListBoxItem Tag="Accounts" Content="Счета" />
+                <ListBoxItem Tag="Transactions" Content="Операции" />
+                <ListBoxItem Tag="Categories" Content="Категории" />
+                <ListBoxItem Tag="Budgets" Content="Бюджеты" />
+                <ListBoxItem Tag="Goals" Content="Цели" />
+                <ListBoxItem Tag="Recurring" Content="Регулярные платежи" />
+                <ListBoxItem Tag="Notifications" x:Name="NotificationsItem" Content="Уведомления" />
+                <ListBoxItem Tag="Reports" Content="Отчёты" />
+                <ListBoxItem Tag="Users" x:Name="UsersItem" Content="Пользователи" />
+                <ListBoxItem Tag="Currencies" x:Name="CurrenciesItem" Content="Валюты" />
+            </ListBox>
+        </DockPanel>
+
+        <!-- Рабочая область: здесь отображается выбранная страница -->
+        <ContentControl x:Name="PageHost" Margin="18" />
+    </DockPanel>
+</Window>

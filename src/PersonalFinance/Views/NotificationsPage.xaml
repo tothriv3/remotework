@@ -1,0 +1,32 @@
+<UserControl x:Class="PersonalFinance.Views.NotificationsPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <DockPanel>
+        <TextBlock DockPanel.Dock="Top" Text="Уведомления" Style="{StaticResource PageTitle}" />
+
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,10">
+            <CheckBox x:Name="UnreadOnly" Content="Только непрочитанные" VerticalAlignment="Center"
+                      Margin="0,0,12,0" Click="Filter_Changed" />
+            <Button Content="Отметить прочитанным" Click="MarkRead_Click" />
+            <Button Content="Прочитать все" Click="MarkAllRead_Click" />
+            <Button Content="Удалить" Click="Delete_Click" />
+        </StackPanel>
+
+        <DataGrid x:Name="Grid">
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsRead}" Value="False">
+                            <Setter Property="FontWeight" Value="SemiBold" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Дата" Binding="{Binding CreatedAt, StringFormat=dd.MM.yyyy HH:mm}" Width="130" />
+                <DataGridTextColumn Header="Сообщение" Binding="{Binding Message}" Width="*" />
+                <DataGridCheckBoxColumn Header="Прочитано" Binding="{Binding IsRead}" Width="95" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</UserControl>

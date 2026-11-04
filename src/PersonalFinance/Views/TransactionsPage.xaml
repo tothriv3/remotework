@@ -1,0 +1,55 @@
+<UserControl x:Class="PersonalFinance.Views.TransactionsPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <DockPanel>
+        <TextBlock DockPanel.Dock="Top" Text="Операции" Style="{StaticResource PageTitle}" />
+
+        <Border DockPanel.Dock="Right" Style="{StaticResource FormPanel}">
+            <StackPanel>
+                <TextBlock x:Name="FormTitle" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,10" />
+                <TextBlock Text="Счёт" />
+                <ComboBox x:Name="AccountBox" DisplayMemberPath="Display" />
+                <TextBlock Text="Категория" />
+                <ComboBox x:Name="CategoryBox" DisplayMemberPath="Display" />
+                <TextBlock Text="Сумма" />
+                <TextBox x:Name="AmountBox" />
+                <TextBlock Text="Дата" />
+                <DatePicker x:Name="DateBox" />
+                <TextBlock Text="Комментарий" />
+                <TextBox x:Name="CommentBox" MaxLength="255" />
+                <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                    <Button Content="Сохранить" Style="{StaticResource PrimaryButton}" Click="Save_Click" />
+                    <Button Content="Отмена" Margin="0" Click="Reset_Click" />
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <WrapPanel DockPanel.Dock="Top" Margin="0,0,0,6">
+            <ComboBox x:Name="AccountFilter" Width="190" Margin="0,0,8,4" DisplayMemberPath="Display"
+                      SelectionChanged="Filter_Changed" />
+            <ComboBox x:Name="TypeFilter" Width="110" Margin="0,0,8,4" SelectionChanged="Filter_Changed" />
+            <TextBlock Text="с" VerticalAlignment="Center" Margin="0,0,4,4" />
+            <DatePicker x:Name="FromFilter" Width="125" Margin="0,0,6,4" SelectedDateChanged="Filter_Changed" />
+            <TextBlock Text="по" VerticalAlignment="Center" Margin="0,0,4,4" />
+            <DatePicker x:Name="ToFilter" Width="125" Margin="0,0,8,4" SelectedDateChanged="Filter_Changed" />
+            <TextBlock Text="Поиск:" VerticalAlignment="Center" Margin="0,0,6,4" />
+            <TextBox x:Name="SearchBox" Width="150" Margin="0,0,0,4" TextChanged="Filter_Changed" />
+        </WrapPanel>
+
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,10">
+            <Button Content="Добавить" Click="Reset_Click" />
+            <Button Content="Удалить" Click="Delete_Click" />
+            <TextBlock x:Name="CountText" VerticalAlignment="Center" Foreground="Gray" />
+        </StackPanel>
+
+        <DataGrid x:Name="Grid" SelectionChanged="Grid_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Дата" Binding="{Binding TransactionDate, StringFormat=dd.MM.yyyy}" Width="95" />
+                <DataGridTextColumn Header="Счёт" Binding="{Binding Account.Display}" Width="*" />
+                <DataGridTextColumn Header="Категория" Binding="{Binding Category.Display}" Width="*" />
+                <DataGridTextColumn Header="Сумма" Binding="{Binding Amount, StringFormat=N2}" Width="110" />
+                <DataGridTextColumn Header="Комментарий" Binding="{Binding Comment}" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</UserControl>

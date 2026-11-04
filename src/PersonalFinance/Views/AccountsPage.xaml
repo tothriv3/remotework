@@ -1,0 +1,38 @@
+<UserControl x:Class="PersonalFinance.Views.AccountsPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <DockPanel>
+        <TextBlock DockPanel.Dock="Top" Text="Счета" Style="{StaticResource PageTitle}" />
+
+        <Border DockPanel.Dock="Right" Style="{StaticResource FormPanel}">
+            <StackPanel>
+                <TextBlock x:Name="FormTitle" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,10" />
+                <TextBlock Text="Название" />
+                <TextBox x:Name="NameBox" MaxLength="100" />
+                <TextBlock Text="Валюта" />
+                <ComboBox x:Name="CurrencyBox" DisplayMemberPath="Display" />
+                <TextBlock Text="Начальный баланс" />
+                <TextBox x:Name="BalanceBox" />
+                <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                    <Button Content="Сохранить" Style="{StaticResource PrimaryButton}" Click="Save_Click" />
+                    <Button Content="Отмена" Margin="0" Click="Reset_Click" />
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,10">
+            <TextBlock Text="Поиск:" VerticalAlignment="Center" Margin="0,0,6,0" />
+            <TextBox x:Name="SearchBox" Width="220" Margin="0,0,12,0" TextChanged="Filter_Changed" />
+            <Button Content="Добавить" Click="Reset_Click" />
+            <Button Content="Удалить" Click="Delete_Click" />
+        </StackPanel>
+
+        <DataGrid x:Name="Grid" SelectionChanged="Grid_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="*" />
+                <DataGridTextColumn Header="Валюта" Binding="{Binding Currency.Code}" Width="90" />
+                <DataGridTextColumn Header="Баланс" Binding="{Binding Balance, StringFormat=N2}" Width="160" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</UserControl>
