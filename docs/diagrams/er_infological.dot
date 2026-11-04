@@ -1,0 +1,49 @@
+// Инфологическая модель (нотация «сущность — связь»)
+graph ER {
+  graph [layout=neato, overlap=true, splines=true, dpi=150, fontname="DejaVu Sans"];
+  node  [fontname="DejaVu Sans", fontsize=24];
+  edge  [fontname="DejaVu Sans", fontsize=20, color="#1E3A5F", penwidth=1.4];
+
+  node [shape=box, style="filled", fillcolor="#EEF4FF", color="#2563EB", penwidth=1.5, width=2.3, height=0.7, fontsize=24];
+  Role [label="Роль", pos="0,6!"];
+  User [label="Пользователь", pos="0,3!"];
+  Currency [label="Валюта", pos="10,6!"];
+  Account [label="Счёт", pos="6.4,3!"];
+  Category [label="Категория", pos="0,-3!"];
+  Transaction [label="Операция", pos="6.4,-3!"];
+  Budget [label="Бюджет", pos="-6.4,-3!"];
+  Notification [label="Уведомление", pos="-6.4,3!"];
+  Goal [label="Финансовая\nцель", pos="6.4,7.6!"];
+  Recurring [label="Регулярный\nплатёж", pos="11,-3!"];
+
+  node [shape=diamond, style="filled", fillcolor="#FFF7E6", color="#D97706", width=1.4, height=0.8, fontsize=19, margin="0.02,0.02"];
+  r1 [label="назначена", pos="0,4.5!"];
+  r2 [label="владеет", pos="3.2,3!"];
+  r3 [label="задаёт\nвалюту", pos="8.4,4.5!"];
+  r4 [label="создаёт", pos="0,0!"];
+  r5 [label="изменяет\nбаланс", pos="6.4,0!"];
+  r6 [label="относится", pos="3.2,-3!"];
+  r7 [label="планирует", pos="-3.2,0!"];
+  r8 [label="ограничивает", pos="-3.2,-3!"];
+  r9 [label="получает", pos="-3.2,3!"];
+  r10 [label="порождает", pos="-6.4,0!"];
+  r11 [label="ставит", pos="3.0,5.6!"];
+  r12 [label="хранит\nнакопления", pos="6.4,5.3!"];
+  r13 [label="списывается", pos="9.5,0.6!"];
+  r14 [label="классифицирует", pos="5.2,-5!"];
+
+  Role -- r1 [taillabel="1", labeldistance=1.6];  r1 -- User [headlabel="N", labeldistance=1.6];
+  User -- r2 [taillabel="1", labeldistance=1.6];  r2 -- Account [headlabel="N", labeldistance=1.6];
+  Currency -- r3 [taillabel="1", labeldistance=1.6]; r3 -- Account [headlabel="N", labeldistance=1.6];
+  User -- r4 [taillabel="1", labeldistance=1.6];  r4 -- Category [headlabel="N", labeldistance=1.6];
+  Account -- r5 [taillabel="1", labeldistance=1.6]; r5 -- Transaction [headlabel="N", labeldistance=1.6];
+  Category -- r6 [taillabel="1", labeldistance=1.6]; r6 -- Transaction [headlabel="N", labeldistance=1.6];
+  User -- r7 [taillabel="1", labeldistance=1.6];  r7 -- Budget [headlabel="N", labeldistance=1.6];
+  Category -- r8 [taillabel="1", labeldistance=1.6]; r8 -- Budget [headlabel="N", labeldistance=1.6];
+  User -- r9 [taillabel="1", labeldistance=1.6];  r9 -- Notification [headlabel="N", labeldistance=1.6];
+  Budget -- r10 [taillabel="0..1", labeldistance=1.8]; r10 -- Notification [headlabel="N", labeldistance=1.6];
+  User -- r11 [taillabel="1", labeldistance=1.6]; r11 -- Goal [headlabel="N", labeldistance=1.6];
+  Account -- r12 [taillabel="0..1", labeldistance=1.8]; r12 -- Goal [headlabel="N", labeldistance=1.6];
+  Account -- r13 [taillabel="1", labeldistance=1.6]; r13 -- Recurring [headlabel="N", labeldistance=1.6];
+  Category -- r14 [taillabel="1", labeldistance=1.6]; r14 -- Recurring [headlabel="N", labeldistance=1.6];
+}

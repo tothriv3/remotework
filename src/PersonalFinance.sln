@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalFinance", "PersonalFinance\PersonalFinance.csproj", "{CF3193AC-76D1-4C81-BF38-54987F26EBF4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalFinance.DataTests", "..\tests\PersonalFinance.DataTests\PersonalFinance.DataTests.csproj", "{694725A5-DE07-4C00-A43D-902A38A17EE8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{CF3193AC-76D1-4C81-BF38-54987F26EBF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF3193AC-76D1-4C81-BF38-54987F26EBF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF3193AC-76D1-4C81-BF38-54987F26EBF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{694725A5-DE07-4C00-A43D-902A38A17EE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{694725A5-DE07-4C00-A43D-902A38A17EE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{694725A5-DE07-4C00-A43D-902A38A17EE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{694725A5-DE07-4C00-A43D-902A38A17EE8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

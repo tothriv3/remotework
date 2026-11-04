@@ -1,0 +1,45 @@
+@startuml
+skinparam dpi 170
+skinparam defaultFontName "DejaVu Sans"
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam activity {
+  BackgroundColor #EEF4FF
+  BorderColor #2563EB
+  DiamondBackgroundColor #FFF7E6
+  DiamondBorderColor #D97706
+}
+skinparam swimlaneBorderColor #1E3A5F
+
+|Пользователь|
+start
+:Открыть раздел «Операции»;
+:Заполнить форму: счёт, категория,\nсумма, дата, комментарий;
+:Нажать «Сохранить»;
+|Приложение|
+if (Данные заполнены верно?) then (нет)
+  :Показать сообщение\nс описанием ошибки;
+  stop
+else (да)
+endif
+|Приложение|
+:Передать операцию в БД\n(Entity Framework Core);
+|База данных|
+if (Ограничения целостности\nи триггер-проверка пройдены?) then (нет)
+  :Отменить транзакцию;
+  |Приложение|
+  :Показать понятное\nсообщение об ошибке;
+  stop
+else (да)
+endif
+|База данных|
+:Сохранить операцию;
+:Триггер пересчитывает\nбаланс счёта;
+if (Расходы по категории\nпревысили лимит бюджета?) then (да)
+  :Триггер создаёт\nуведомление;
+else (нет)
+endif
+|Приложение|
+:Обновить таблицу операций\nи счётчик уведомлений;
+stop
+@enduml

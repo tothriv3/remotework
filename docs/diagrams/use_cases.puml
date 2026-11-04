@@ -1,0 +1,46 @@
+@startuml
+skinparam dpi 170
+skinparam defaultFontName "DejaVu Sans"
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam usecase {
+  BackgroundColor #EEF4FF
+  BorderColor #2563EB
+}
+skinparam actorBorderColor #1E3A5F
+skinparam rectangleBorderColor #1E3A5F
+left to right direction
+
+actor "Гость" as G
+actor "Пользователь" as U
+actor "Администратор" as A
+U <|-- A
+
+rectangle "Сервис «Личный бюджет»" {
+  usecase "Регистрация" as UC1
+  usecase "Вход в систему" as UC2
+  usecase "Ведение счетов" as UC3
+  usecase "Учёт доходов\nи расходов" as UC4
+  usecase "Ведение категорий" as UC5
+  usecase "Планирование бюджетов" as UC6
+  usecase "Управление\nфинансовыми целями" as UC7
+  usecase "Ведение регулярных\nплатежей" as UC8
+  usecase "Просмотр уведомлений" as UC9
+  usecase "Формирование отчётов" as UC10
+  usecase "Управление\nпользователями" as UC11
+  usecase "Ведение справочника\nвалют" as UC12
+}
+
+G --> UC1
+G --> UC2
+U --> UC3
+U --> UC4
+U --> UC5
+U --> UC6
+U --> UC7
+U --> UC8
+U --> UC9
+U --> UC10
+A --> UC11
+A --> UC12
+@enduml

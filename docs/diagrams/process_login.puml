@@ -1,0 +1,43 @@
+@startuml
+skinparam dpi 170
+skinparam defaultFontName "DejaVu Sans"
+skinparam defaultFontSize 13
+skinparam shadowing false
+skinparam activity {
+  BackgroundColor #EEF4FF
+  BorderColor #2563EB
+  DiamondBackgroundColor #FFF7E6
+  DiamondBorderColor #D97706
+}
+skinparam swimlaneBorderColor #1E3A5F
+
+|Пользователь|
+start
+:Ввести email и пароль;
+|Приложение|
+if (Поля заполнены?) then (нет)
+  :Сообщение «Введите email»\nили «Введите пароль»;
+  stop
+else (да)
+endif
+:Найти пользователя по email;
+:Вычислить хеш PBKDF2 введённого\nпароля и сравнить с сохранённым;
+if (Пароль верный?) then (нет)
+  :Сообщение «Неверный email\nили пароль»;
+  stop
+else (да)
+endif
+:Вызвать процедуру\nsp_ProcessRecurringPayments (ADO.NET);
+|База данных|
+while (Есть платежи со сроком\nне позже сегодняшнего дня?) is (да)
+  :Создать операцию\nпо регулярному платежу;
+  :Сдвинуть дату следующего\nплатежа на период;
+endwhile (нет)
+if (Проведён хотя бы один платёж?) then (да)
+  :Создать уведомление\nо проведённых платежах;
+else (нет)
+endif
+|Приложение|
+:Открыть главное окно с разделами,\nдоступными роли пользователя;
+stop
+@enduml
